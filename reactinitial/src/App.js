@@ -9,20 +9,33 @@ const App = () => {
 
   const [loading, setLoading] = useState(false)
   const [chars, setChars] = useState([])
+  const [sub, setSub] = useState(false)
 
   async function fetchCharacters() {
 
     const res = await fetch("https://demoapi.com/api/series/howimetyourmother")
     const resJSON = await res.json();
 
-    console.log(resJSON)
+    //console.log(resJSON)
 
     setChars(resJSON)
-    setLoading(false)
+    /* setLoading(false) */ //ha itt kiszedem, akkor a setIntervalban legyen benne!
   }
 
+  
+
   useEffect(
-    () => {
+    () => { 
+      
+      const intervalFirst = setInterval( () => {
+        setLoading(false)                               //Minden ami a SetInterval-ban van az 5 mp után fog lefutni
+        clearInterval(intervalFirst)
+          const intervalSecond = setInterval( () => {   //5mp után indul a 10mp-es késleltetés
+            setSub(true)
+            clearInterval(intervalSecond)
+          }, 10000)
+      }, 5000);
+  
       setLoading(true)
       fetchCharacters()
     },
@@ -30,17 +43,35 @@ const App = () => {
   )
 
 
+let stateVar = 1   //Ez nem kell a program futásához, csak a clg megmutatja, hogy éppen milyen State-ben van az oldal
+if (loading===true){
+  stateVar = 1
+} else {
+  if (sub === false) {
+    stateVar = 2
+  }else{
+    stateVar = 3
+  }
+}
+console.log(stateVar)  //
+
+
   return (
     <div className="App">
     {loading ? <LoadingMask /> :
-    <>
-      <h1>{title}</h1>
-      {chars.map( ({name, details}) => <Character key={name} name={name} details={details} />)}
-      <Subscription />
-    </>
-    }
-    </div>
-  )
+    sub ?       <>
+                  <h1>{title}</h1>
+                  {chars.map( ({name, details}) => <Character key={name} name={name} details={details} />)}
+                  <Subscription /> 
+                </> :
+                <>
+                  <h1>{title}</h1>
+                  {chars.map( ({name, details}) => <Character key={name} name={name} details={details} />)} 
+                </>
+    } </div>
+    )
+
+
 }
 
 export default App
