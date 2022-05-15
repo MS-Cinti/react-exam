@@ -7,7 +7,7 @@ function Subscription() {
     const [valid, setValid] = useState(false)
     const [inputValue, setInputValue] = useState("")
     const [showForm, setShowForm] = useState(true)
-    const [showSubscribedMessage, setShowSubscriedMessage] = useState(false)
+    const [showSubscribedMessage, setShowSubscribedMessage] = useState(false)
 
     const title = "Subscribe to our newsletter"
     
@@ -36,11 +36,11 @@ function Subscription() {
         console.log(responseJSON); 
 
         if(responseJSON.done === true){
-            setShowSubscriedMessage(true) //sikeres fetch válasz után kiírja, hogy Subscribed
+            setShowSubscribedMessage(true) //sikeres fetch válasz után kiírja, hogy Subscribed
         }
 
         const intervalThird = setInterval( () => {   //5mp után a Subscribed felirat eltűnik
-            setShowSubscriedMessage(false)
+            setShowSubscribedMessage(false)
             clearInterval(intervalThird)
         }, 5000)
     }
