@@ -31,7 +31,7 @@ const App = () => {
           const intervalSecond = setInterval( () => {   //5mp után indul a 10mp-es késleltetés
             setSub(true)
             clearInterval(intervalSecond)
-          }, 1000)
+          }, 10000)
       }, 5000);
   
       setLoading(true)

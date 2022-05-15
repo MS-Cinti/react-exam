@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Button from '@mui/material/Button'
 
 function Character({name, details}) {
 
@@ -12,7 +13,7 @@ function Character({name, details}) {
           <p>{details}</p>
         </> : null
         }
-        <button onClick={ () => {setInfo(!info)} }>{!info ? "Show more" : "Show hide"}</button>
+        <Button variant="outlined" onClick={ () => {setInfo(!info)} }>{!info ? "Show more" : "Show hide"}</Button>
     </div>
   )
 }

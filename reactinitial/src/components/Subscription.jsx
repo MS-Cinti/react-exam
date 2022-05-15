@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
 
 function Subscription() {
 
@@ -37,7 +39,7 @@ function Subscription() {
             setShowSubscriedMessage(true) //sikeres fetch válasz után kiírja, hogy Subscribed
         }
 
-        const intervalThird = setInterval( () => {   //5mp után indul a 10mp-es késleltetés
+        const intervalThird = setInterval( () => {   //5mp után a Subscribed felirat eltűnik
             setShowSubscriedMessage(false)
             clearInterval(intervalThird)
         }, 5000)
@@ -47,7 +49,6 @@ function Subscription() {
         setValid(validateEmail(target.value)) //ez nézi meg, hogy valid-e az email cím, ami a button klikkelhetőségéhez kell
         setInputValue(target.value) //ez beállítja az input value state-et a beírt value alapján arra az email címre, amit postolunk
     }
-
     
     return (
     <>
@@ -55,12 +56,13 @@ function Subscription() {
         <div className="subscription">
             {title}
             <form >
-                <input type="text" placeholder='email' name="email" value={inputValue} onChange={ ({target}) => {onChangeFunctions(target)} }/>
-                {valid ?
+                <TextField id="filled-basic" label="Filled" variant="filled" type="text" placeholder='email' name="email" value={inputValue} onChange={ ({target}) => {onChangeFunctions(target)} }/>
+{/*                 <input type="text" placeholder='email' name="email" value={inputValue} onChange={ ({target}) => {onChangeFunctions(target)} }/>
+ */}                {valid ?
                 <>
-                    <button onClick={(e) => {fetchEmail(e)}}>Send</button>
+                    <Button variant="contained" onClick={(e) => {fetchEmail(e)}}>Send</Button>
                 </> : 
-                    <button disabled>Send</button>
+                    <Button variant="contained" disabled>Send</Button>
                 }
             </form>
         </div> : 
