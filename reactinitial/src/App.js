@@ -22,8 +22,6 @@ const App = () => {
     /* setLoading(false) */ //ha itt kiszedem, akkor a setIntervalban legyen benne!
   }
 
-  
-
   useEffect(
     () => { 
       
@@ -33,7 +31,7 @@ const App = () => {
           const intervalSecond = setInterval( () => {   //5mp után indul a 10mp-es késleltetés
             setSub(true)
             clearInterval(intervalSecond)
-          }, 10000)
+          }, 1000)
       }, 5000);
   
       setLoading(true)
@@ -62,7 +60,7 @@ console.log(stateVar)  //
     sub ?       <>
                   <h1>{title}</h1>
                   {chars.map( ({name, details}) => <Character key={name} name={name} details={details} />)}
-                  <Subscription /> 
+                  <Subscription />
                 </> :
                 <>
                   <h1>{title}</h1>
