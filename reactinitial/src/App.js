@@ -53,22 +53,22 @@ if (loading===true){
 }
 console.log(stateVar)  //
 
-
   return (
     <div className="App">
     {loading ? <LoadingMask /> :
-    sub ?       <>
-                  <h1>{title}</h1>
-                  {chars.map( ({name, details}) => <Character key={name} name={name} details={details} />)}
-                  <Subscription />
-                </> :
-                <>
-                  <h1>{title}</h1>
-                  {chars.map( ({name, details}) => <Character key={name} name={name} details={details} />)} 
-                </>
-    } </div>
-    )
-
+    sub ?       
+      <>
+        <h1>{title}</h1>
+        {chars.map( ({name, details}) => <Character key={name} name={name} details={details} />)}
+        <Subscription />
+      </> :
+      <>
+        <h1>{title}</h1>
+        {chars.map( ({name, details}) => <Character key={name} name={name} details={details} />)} 
+      </>
+    } 
+    </div>
+  )
 
 }
 
