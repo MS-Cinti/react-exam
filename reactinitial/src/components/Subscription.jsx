@@ -49,7 +49,7 @@ function Subscription() {
         setValid(validateEmail(target.value)) //ez nézi meg, hogy valid-e az email cím, ami a button klikkelhetőségéhez kell
         setInputValue(target.value) //ez beállítja az input value state-et a beírt value alapján arra az email címre, amit postolunk
     }
-    
+
     return (
     <>
     {showForm ?
@@ -57,8 +57,7 @@ function Subscription() {
             {title}
             <form >
                 <TextField id="filled-basic" label="Filled" variant="filled" type="text" placeholder='email' name="email" value={inputValue} onChange={ ({target}) => {onChangeFunctions(target)} }/>
-{/*                 <input type="text" placeholder='email' name="email" value={inputValue} onChange={ ({target}) => {onChangeFunctions(target)} }/>
- */}                {valid ?
+                {valid ?
                 <>
                     <Button variant="contained" onClick={(e) => {fetchEmail(e)}}>Send</Button>
                 </> : 
