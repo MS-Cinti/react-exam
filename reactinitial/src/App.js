@@ -25,12 +25,10 @@ const App = () => {
   useEffect(
     () => { 
       
-      const intervalFirst = setInterval( () => {
+      setTimeout( () => {
         setLoading(false)                               //Minden ami a SetInterval-ban van az 5 mp után fog lefutni
-        clearInterval(intervalFirst)
-          const intervalSecond = setInterval( () => {   //5mp után indul a 10mp-es késleltetés
+        setTimeout( () => {                             //5mp után indul a 10mp-es késleltetés
             setSub(true)
-            clearInterval(intervalSecond)
           }, 10000)
       }, 5000);
   

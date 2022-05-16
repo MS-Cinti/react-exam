@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
+import LoadingMask from './LoadingMask'
 
 function Subscription() {
 
@@ -8,6 +9,7 @@ function Subscription() {
     const [inputValue, setInputValue] = useState("")
     const [showForm, setShowForm] = useState(true)
     const [showSubscribedMessage, setShowSubscribedMessage] = useState(false)
+    const [subLoading, setSubLoading] = useState(false)
 
     const title = "Subscribe to our newsletter"
     
@@ -19,6 +21,7 @@ function Subscription() {
     async function fetchEmail(e) {
         e.preventDefault(); // Submit esemény automatikusan (by default) újratölti az oldalt, ez a sor ezt megakadályozza
         setShowForm(false) //a gombra kattintás után eltűnteti a formot (fetch előtt)
+        setSubLoading(true)
 
         console.log(inputValue) 
 
@@ -36,12 +39,12 @@ function Subscription() {
         console.log(responseJSON); 
 
         if(responseJSON.done === true){
+            setSubLoading(false)
             setShowSubscribedMessage(true) //sikeres fetch válasz után kiírja, hogy Subscribed
         }
 
-        const intervalThird = setInterval( () => {   //5mp után a Subscribed felirat eltűnik
+        setTimeout( () => {   //5mp után a Subscribed felirat eltűnik
             setShowSubscribedMessage(false)
-            clearInterval(intervalThird)
         }, 5000)
     }
 
@@ -64,11 +67,12 @@ function Subscription() {
                     <Button variant="contained" disabled>Send</Button>
                 }
             </form>
-        </div> : 
-        showSubscribedMessage ?
-        <div>
-            <h3>Subscribed</h3>
-        </div> : <></>
+        </div> :
+        subLoading ?
+            <LoadingMask /> :
+            showSubscribedMessage ?
+            <h3>Subscribed</h3>:
+            <></>
     }
     </>
   )
